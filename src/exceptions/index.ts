@@ -17,6 +17,7 @@ export class NotPermitted extends Error {
     constructor(reason: string) {
         super(reason);
     }
+    
 }
 
 export class ValidationError extends Error {
