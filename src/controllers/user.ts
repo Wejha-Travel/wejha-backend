@@ -1,6 +1,7 @@
 import { NotFound, NotPermitted } from "../exceptions";
 import { CommuteSurvey, CommuteSurveyModelInterface } from "../models/interfaces/commutesurvey";
 import { User, UserModelInterface } from "../models/interfaces/user";
+import { editSurveyValidation, newSurveyValidation } from "../validation/survey";
 
 export class UserController {
     constructor(
@@ -28,6 +29,7 @@ export class UserController {
     }
 
     async addSurvey(user_id: number, survey: Omit<CommuteSurvey, "id" | "user_id">) {
+        survey = newSurveyValidation(survey);
         return this.surveys.create({
             ...survey,
             user_id,
@@ -35,6 +37,7 @@ export class UserController {
     }
 
     async editSurvey(survey_id: number, user_id: number, surveyData: Partial<CommuteSurvey>) {
+        surveyData = editSurveyValidation(surveyData);
         let [survey] = await this.surveys.read({id: survey_id, user_id});
         if (!survey) throw new NotFound("survey");
         await this.surveys.update(survey_id, surveyData);
