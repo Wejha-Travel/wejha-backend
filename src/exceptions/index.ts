@@ -17,4 +17,11 @@ export class NotPermitted extends Error {
     constructor(reason: string) {
         super(reason);
     }
+    
+}
+export class ValidationError extends Error {
+    statusCode = 400;
+    constructor(error: string) {
+        super(error);
+    }
 }

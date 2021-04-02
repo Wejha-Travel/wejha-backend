@@ -10,6 +10,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "joi": "^17.4.0",
     "knex": "^0.95.4",
     "objection": "^2.2.15"
   },

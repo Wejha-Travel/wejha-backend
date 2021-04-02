@@ -1,34 +1,27 @@
-const Joi = require('joi');
+import Joi from "joi";
+import { ValidationError } from "../exceptions";
+import { User } from "../models/interfaces/user";
+import { userInfo } from "node:os";
 
-const schema = Joi.object({
-    username: Joi.string()
-        .alphanum()
-        .min(3)
-        .max(30)
-        .required(),
+export const UserSchema = Joi.object({
+  username: Joi.string().alphanum().min(3).max(30).required(),
 
-    password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
-    status:[
-        Joi.string(),
-        Joi.valid('active','unverified','banned')
-        ],
-    email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-})
-    .with('username', 'status')
-    .xor('password', 'access_token')
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+  status: Joi.string().valid("active", "unverified", "banned"),
+  email: Joi.string().email({
+    minDomainSegments: 2,
+    tlds: { allow: ["com", "net"] },
+  }),
+});
 
-
-schema.validate({ username: 'abc', status: 'active' });
-// -> { value: { username: 'abc', status: 'active' } }
-
-schema.validate({});
-// -> { value: {}, error: '"username" is required' }
-
-// Also -
-
-try {
-    const value = await schema.validateAsync({ username: 'abc', status: 'active' });
+export function CreateUserValidation(data: any) {
+    let { value, error } = UserSchema.validate(data, {presence: "required"});
+    if (error) throw new ValidationError(error.message);
+    console.log(value);
+    return value as Omit<User, "id" |"password">;
 }
-catch (err) { }
+export function editUserValidation(data: any) {
+    let { value, error } = UserSchema.validate(data);
+    if (error) throw new ValidationError(error.message);
+    return value as Partial<User>;
+} 
