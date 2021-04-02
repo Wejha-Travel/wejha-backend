@@ -15,6 +15,7 @@ export const services = {
 }
 
 export const controllers = {
+	
 	admin: new AdminController(
 		models.admin,
 		models.commutesurvey
