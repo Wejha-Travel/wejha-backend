@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router()
 
 //@ts-ignore
-router.get('/', async (req, res, next) => {
+router.get('/signin', async (req, res, next) => {
     try {
         
         
