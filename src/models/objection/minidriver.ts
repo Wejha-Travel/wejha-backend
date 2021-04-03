@@ -1,11 +1,13 @@
 import { Model, BaseModel } from "./base";
 import { MiniDriver, MiniDriverModelInterface } from "../interfaces/minidriver";
 import bcrypt from "bcryptjs";
+import { MiniDriverDetails } from "../interfaces/minidriver_details";
 
 export class MiniDriverObjectionModel extends Model implements MiniDriver {
     id: number
     email: string
     password: string
+    details?: MiniDriverDetails
 
     static tableName = "minidrivers";
     static jsonSchema = {
@@ -45,4 +47,11 @@ export class MiniDriverModel extends BaseModel<MiniDriver> implements MiniDriver
     async verifyPassword(password: string, hash: string) {
         return bcrypt.compare(password, hash)
     }
+
+    async register(driver: Omit<MiniDriver, "id">, details: MiniDriverDetails) {
+        await this.model.query().insertWithRelated({
+            ...driver,
+            details: details
+        })
+    } 
 }

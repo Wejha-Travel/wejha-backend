@@ -10,4 +10,5 @@ export interface MiniDriver {
 
 export interface MiniDriverModelInterface extends BaseInterface<MiniDriver> {
 	verifyPassword(password: string, hash: string): Promise<boolean>
+	register(driver: Omit<MiniDriver, "id">, details: MiniDriverDetails): Promise<void>
 }
