@@ -5,7 +5,8 @@ import { Coordinates } from "../interfaces/coordinates";
 export class CommuteSurveyObjectionModel extends Model implements CommuteSurvey {
 	id: number
 	name: string
-	time: number
+	arrival_time: number
+	departure_time: number
 	notes: string
 	frequency: string
 	user_id: number
@@ -18,7 +19,8 @@ export class CommuteSurveyObjectionModel extends Model implements CommuteSurvey 
 		attributes: {
 			id: { type: "number" },
 			name: { type: "string" },
-			time: { type: "number" },
+			arrival_time: { type: "number" },
+			departure_time: { type: "number" },
 			frequency: { type: "string" },
 			user_id: { type: "number" },
 			source: { type: "object", attributes: { longitude: "number", latitude: "number"  } },

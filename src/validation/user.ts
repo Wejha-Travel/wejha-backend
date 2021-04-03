@@ -13,8 +13,8 @@ export const UserSchema = Joi.object({
 });
 
 const LoginSchema = Joi.object({
-  email: Joi.string().required(),
-  password: Joi.string().email({
+  password: Joi.string().required(),
+  email: Joi.string().email({
     minDomainSegments: 2,
     tlds: { allow: ["com", "net"] },
   }).max(50).required(),

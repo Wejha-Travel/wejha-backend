@@ -3,7 +3,8 @@ exports.up = function(knex) {
     .createTable("commutesurveys", (table) => {
         table.increments("id").primary()
 		table.string("name")
-		table.string("time")
+		table.integer("arrival_time")
+		table.integer("departure_time")
 		table.string("notes")
 		table.string("frequency")
 		table.integer("user_id")

@@ -4,7 +4,8 @@ import { Coordinates } from "./coordinates";
 export interface CommuteSurvey {
 	id: number
 	name: string
-	time: number
+	arrival_time: number
+	departure_time: number
 	notes: string
 	frequency: string
 	user_id: number

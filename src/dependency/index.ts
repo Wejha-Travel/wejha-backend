@@ -33,5 +33,3 @@ export const qufl = new Qufl({
 	tokenTimeout: "24h",
 	passError: true,
 })
-
-qufl.extractorMapping["token"] = qufl.extractors.cookie
