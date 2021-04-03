@@ -1,9 +1,9 @@
 // Update with your config settings.
 
-const client = process.env.DATABASE || "sqlite3";
+const client = process.env.DATABASE || "postgresql";
 
 const connection = {
-  database: process.env.DB_NAME || "db",
+  database: process.env.DB_NAME || "wejha",
   user: process.env.DB_USER || "user" , 
   password: process.env.DB_PASS || "password",
   host: process.env.DB_HOST || "localhost"
@@ -23,7 +23,7 @@ module.exports = {
 
   development: {
     client,
-    connection: "test.db",
+    connection,
     pool: {
       min: 2,
       max: 10
