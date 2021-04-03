@@ -3,6 +3,8 @@ import { AdminController } from '../controllers/admin'
 import { CommuteSurveyModel } from '../models/objection/commutesurvey'
 import { UserController } from '../controllers/user'
 import { UserModel } from '../models/objection/user'
+import Qufl from 'qufl'
+import { config } from './config'
 
 export const models = {
 	admin: new AdminModel(),
@@ -25,3 +27,11 @@ export const controllers = {
 		models.commutesurvey
 	),
 }
+
+export const qufl = new Qufl({
+	secret: config.server.secret,
+	tokenTimeout: "24h",
+	passError: true,
+})
+
+qufl.extractorMapping["token"] = qufl.extractors.cookie
