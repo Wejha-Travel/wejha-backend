@@ -5,7 +5,7 @@ services:
     build: 
       context: ./
       dockerfile: ./Dockerfile
-    container_name: erbringts-backend
+    container_name: wejha-backend
     env_file: ./.env
     ports:
         - "8000:8000"
