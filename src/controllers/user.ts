@@ -2,6 +2,7 @@ import { NotFound, NotPermitted } from "../exceptions";
 import { CommuteSurvey, CommuteSurveyModelInterface } from "../models/interfaces/commutesurvey";
 import { User, UserModelInterface } from "../models/interfaces/user";
 import { editSurveyValidation, newSurveyValidation } from "../validation/survey";
+import { createUserValidation, loginValidation } from "../validation/user";
 
 export class UserController {
     constructor(
@@ -10,11 +11,15 @@ export class UserController {
     ) {
     }
 
-    async signup(user: Omit<User, "id">) {
-        await this.users.create(user);
+    async signup(userData: Omit<User, "id">) {
+        userData = createUserValidation(userData);
+        await this.users.create(userData);
+        let [user] = await this.users.read({email: userData.email});
+        return { ...user, password: undefined };
     }
 
-    async signin(email: string, password: string) {
+    async signin(data: any) {
+        let { email, password } = loginValidation(data);
         let [user] = await this.users.read({email});
         if (!user) throw new NotFound("user");
 
