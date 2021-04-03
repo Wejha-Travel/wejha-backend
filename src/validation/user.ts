@@ -3,12 +3,13 @@ import { ValidationError } from "../exceptions";
 import { User } from "../models/interfaces/user";
 
 export const UserSchema = Joi.object({
-  username: Joi.string().alphanum().min(3).max(30),
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+  first_name: Joi.string(),
+  last_name: Joi.string(),
+  password: Joi.string().min(8).max(50),
   email: Joi.string().email({
     minDomainSegments: 2,
     tlds: { allow: ["com", "net"] },
-  }),
+  }).max(50),
 });
 
 export function CreateUserValidation(data: any) {

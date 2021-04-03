@@ -4,7 +4,8 @@ import bcrypt from "bcryptjs";
 
 export class UserObjectionModel extends Model implements User {
     id: number
-    username: string
+    first_name: string
+    last_name: string
     password: string
     email: string
     status: "active" | "unverified" | "banned"
@@ -14,7 +15,8 @@ export class UserObjectionModel extends Model implements User {
         type: "object",
         attributes: {
             id: { type: "number" },
-            username: { type: "string" },
+            first_name: { type: "string" },
+            last_name: { type: "string" },
             password: { type: "string" },
             email: { type: "string" },
             status: { type: "string" },
