@@ -4,6 +4,7 @@ exports.up = function(knex) {
         table.increments("id").primary()
 		table.string("name")
 		table.string("time")
+		table.string("notes")
 		table.string("frequency")
 		table.integer("user_id")
 		table.jsonb("source")
