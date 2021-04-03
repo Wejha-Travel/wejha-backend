@@ -13,6 +13,7 @@
     "joi": "^17.4.0",
     "knex": "^0.95.4",
     "objection": "^2.2.15",
+    "pg": "^8.5.1",
     "qufl": "^0.5.2"
   },
   "devDependencies": {

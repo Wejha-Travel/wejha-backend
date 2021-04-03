@@ -4,9 +4,14 @@ import { CommuteSurvey } from "../models/interfaces/commutesurvey";
 
 const SurveySchema = Joi.object({
     name: Joi.string(),
-    time: Joi.number().min(0).max(1440),
+    arrival_time: Joi.number().min(0).max(1440),
+    departure_time: Joi.number().min(0).max(1440),
     frequency: Joi.string(),
     source: Joi.object({
+        longitude: Joi.number(),
+        latitude: Joi.number()
+    }),
+    destination: Joi.object({
         longitude: Joi.number(),
         latitude: Joi.number()
     })

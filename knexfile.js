@@ -11,9 +11,19 @@ const connection = {
 
 module.exports = {
 
+  testing: {
+    client: process.env.DATABASE || "postgresql",
+    connection: {
+      host: process.env.DB_HOST || "localhost",
+      database: process.env.DB_NAME || "testing",
+      user: process.env.DB_USER || "user",
+      password: process.env.DB_PASS || "password"
+    }
+  },
+
   development: {
     client,
-    connection,
+    connection: "test.db",
     pool: {
       min: 2,
       max: 10
