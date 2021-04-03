@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export class AdminObjectionModel extends Model implements Admin {
     id: number
-    username: string
+    email: string
     password: string
 
     static tableName = "admins";
@@ -12,7 +12,7 @@ export class AdminObjectionModel extends Model implements Admin {
         type: "object",
         attributes: {
             id: { type: "number" },
-            username: { type: "string" },
+            email: { type: "string" },
             password: { type: "string" },
         }
     }
