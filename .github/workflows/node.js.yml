@@ -47,3 +47,13 @@ jobs:
           DB_NAME: wejha
           DB_USER: root
           DB_PASS: password
+      - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.IP }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PRIVATE_KEY }}
+        script: |
+          cd wejha-backend
+          git pull origin master
+          sudo docker-compose up --build -d
