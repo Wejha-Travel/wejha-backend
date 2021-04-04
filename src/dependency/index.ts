@@ -1,3 +1,4 @@
+import { CommuteRequestModel } from '../models/objection/commute_request'
 import { MiniDriverDetailsModel } from '../models/objection/minidriver_details'
 import { MiniDriverModel } from '../models/objection/minidriver'
 import { MiniDriverController } from '../controllers/minidriver'
@@ -10,6 +11,9 @@ import Qufl from 'qufl'
 import { config } from './config'
 
 export const models = {
+	commute_request:	new CommuteRequestModel(),
+
+
 	minidriverdetails:	new MiniDriverDetailsModel(),
 	minidriver:	new MiniDriverModel(),
 	admin: new AdminModel(),
