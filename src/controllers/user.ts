@@ -29,6 +29,11 @@ export class UserController {
         throw new NotPermitted("incorrect password");
     }
 
+    async profile(userId: number) {
+        let [ user ] = await this.users.read({id: userId})
+        return { ...user, password: undefined };
+    }
+
     async fetchSurveys(user_id: number) {
         return this.surveys.read({ user_id });
     }

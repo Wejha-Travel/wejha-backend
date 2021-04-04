@@ -76,6 +76,18 @@ router.delete('/surveys/:id', async (req, res, next) => {
     }
 })
 
+router.get('/profile', async (req, res, next) => {
+    try {
+        let data = await controllers.user.profile(+req.qufl.sub);
+        res.send({
+            status: "success",
+            data
+        })
+    } catch (e) {
+        next(e)
+    }
+})
+
 // router.post('/', async (req, res, next) => {
 //     try {
 
